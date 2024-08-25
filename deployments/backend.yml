@@ -8,19 +8,58 @@ pipelines:
     materials:
       git-ddaaf85:
         git: https://github.com/Santhosh-Grandhi/Gocd
-        shallow_clone: false
+        shallow_clone: true
         auto_update: true
         branch: main
     stages:
-      - Test-s:
+      - Dev:
           fetch_materials: true
-          keep_artifacts: false
-          clean_workspace: false
           approval:
-            type: success
-            allow_only_on_success: false
+            type: manual
           jobs:
-            Test-j:
+            ansible:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - -l
+                    command: ls
+                    run_if: passed
+
+      - QA:
+          fetch_materials: true
+          approval:
+            type: manual
+          jobs:
+            ansible:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - -l
+                    command: ls
+                    run_if: passed
+
+      - STAGE:
+          fetch_materials: true
+          approval:
+            type: manual
+          jobs:
+            ansible:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - -l
+                    command: ls
+                    run_if: passedY
+
+      - PROD:
+          fetch_materials: true
+          approval:
+            type: manual
+          jobs:
+            ansible:
               timeout: 0
               tasks:
                 - exec:
