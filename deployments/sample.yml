@@ -1,6 +1,6 @@
 format_version: 10
 pipelines:
-  Demo Pipeline:
+  Demo-Pipeline:
     group: DemoGroup
     label_template: ${COUNT}
     lock_behavior: none
