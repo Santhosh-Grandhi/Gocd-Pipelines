@@ -11,6 +11,8 @@ pipelines:
         shallow_clone: true
         auto_update: true
         branch: main
+    environment_variables:
+      - component: backend
     stages:
       - Dev:
           fetch_materials: true
