@@ -11,7 +11,8 @@ pipelines:
         shallow_clone: true
         auto_update: true
         branch: main
-
+    environment_variables:
+      Component: Hello_Hello
 #    environment_variables:
 #      - component: test
     stages:
@@ -27,5 +28,5 @@ pipelines:
                     arguments:
                       - run.sh
                     command: bash
-              environment_variables:
-               Component: Hello
+#              environment_variables:
+#               Component: Hello
